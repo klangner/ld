@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cv.h>
 #include <highgui.h>
+#include "histogram.hpp"
 
 using namespace std;
 using namespace cv;
@@ -19,20 +20,29 @@ Mat loadImage(const char* fileName){
 	return scaled;
 }
 
-void showImage(Mat image){
-	namedWindow( "Display Image", CV_WINDOW_AUTOSIZE );
-	imshow( "Display Image", image );
-	waitKey(0);
+void showImage(const char* title, Mat image){
+	namedWindow(title, CV_WINDOW_AUTOSIZE );
+	imshow(title, image );
 }
 
+Mat processImage(Mat image){
+	Mat binary(800, 600, CV_8UC1);
+	threshold(image, binary, 100, 255, THRESH_BINARY);
+	return binary;
+}
 
 int main( int argc, char** argv )
 {
 	assertTrue(argc == 2, "Usage: ld <image_file>");
 	Mat image = loadImage(argv[1]);
 	assertTrue(image.data, "Can't load image.");
-	showImage(image);
+	MatND hist = histogram1D(image);
+	Mat histImage = getHistogramAsImage(hist);
+	Mat output = processImage(image);
+//	showImage("Input", image);
+	showImage("Output", output);
 
+	waitKey(0);
 	return 0;
 }
 
