@@ -8,8 +8,8 @@
 
 using namespace cv;
 
-const uint WIDTH = 800;
-const uint HEIGHT = 600;
+const uint WIDTH = 320;
+const uint HEIGHT = 240;
 
 void assertTrue(bool p, string msg){
 	if(!p){
@@ -89,7 +89,7 @@ int main( int argc, char** argv )
 	Mat histImage = getHistogramAsImage(hist);
 	Mat output = processImage(image);
 	drawCone(output, WIDTH/2);
-//	showImage("Input", image);
+	showImage("Input", image);
 //	showImage("Histogram", histImage);
 	showImage("Output", output);
 
