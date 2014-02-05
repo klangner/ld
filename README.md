@@ -5,7 +5,7 @@ The goal of this project is to create library for the line following robot with 
 
 ## How does it work
 
-* Aguire image from the camera
+* Acquire image from the camera
 
 ![Input](https://raw.github.com/klangner/ld/master/doc/source.png)
 
