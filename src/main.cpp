@@ -30,7 +30,7 @@ void showImage(const char* title, Mat image){
 	imshow(title, image );
 }
 
-Mat processImage(Mat image){
+Mat findSigns(Mat image){
 	Mat binary;
 	threshold(image, binary, 100, 255, THRESH_BINARY);
 	return binary;
@@ -87,7 +87,7 @@ int main( int argc, char** argv )
 	assertTrue(image.data, "Can't load image.");
 	MatND hist = histogram1D(image);
 	Mat histImage = getHistogramAsImage(hist);
-	Mat output = processImage(image);
+	Mat output = findSigns(image);
 	drawCone(output, WIDTH/2);
 	showImage("Input", image);
 //	showImage("Histogram", histImage);
